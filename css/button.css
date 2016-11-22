@@ -29,7 +29,7 @@
 
 body a.gumroad-button {
   background-image: none !important;
-  background-color: none !important;
+  background-color: transparent !important;
   padding: 0.75em 2em !important;
   text-align: center !important;
   text-decoration: none !important;
@@ -59,7 +59,7 @@ body a.gumroad-button:before {
   transition: none;
 }
 body a.gumroad-button:hover {
-  background-color: #2194E0;
+  background-color: #2194E0 !important;
   color: #fff !important;
   border-bottom: 4px solid #1977b5;
 }
