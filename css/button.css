@@ -21,7 +21,7 @@
 .wrapper {
   display: block;
   position: absolute;
-  top: 50%;
+  top: 84%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -29,6 +29,7 @@
 
 body a.gumroad-button {
   background-image: none !important;
+  background-color: none !important;
   padding: 0.75em 2em !important;
   text-align: center !important;
   text-decoration: none !important;
@@ -41,6 +42,7 @@ body a.gumroad-button {
   transition: all 0.2s ease-in-out !important;
   position: relative !important;
   overflow: hidden !important;
+  line-height: inherit !important;
 }
 body a.gumroad-button:before {
   content: "";
@@ -58,12 +60,16 @@ body a.gumroad-button:before {
 }
 body a.gumroad-button:hover {
   background-color: #2194E0;
-  color: #fff;
+  color: #fff !important;
   border-bottom: 4px solid #1977b5;
 }
 body a.gumroad-button:hover:before {
-  -webkit-transform: skewX(-45deg) translateX(13.5em);
-          transform: skewX(-45deg) translateX(13.5em);
+  -webkit-transform: skewX(-45deg) translateX(20.5em);
+          transform: skewX(-45deg) translateX(20.5em);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+body a.gumroad-button span.gumroad-button-logo {
+  background-image: none !important;
+  width: 0px !important;
 }
