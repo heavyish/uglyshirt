@@ -4,17 +4,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.js"></script>
     <script type="">
-      $("body").vegas({
-        delay: 7000,
-        timer: false,
-        shuffle: true,
-        firstTransition: 'fade',
-        firstTransitionDuration: 5000,
-        transition: 'slideDown2',
-        transitionDuration: 2000,
-        slides: [
-          { src: '/img/shirt_front.png' }
-        ]
+      $(document).ready(function($) {
+        $("body").vegas({
+          slides: [
+            { src: '/img/shirt_front.png' }
+          ]
+        });
       });
     </script>
   </head>
