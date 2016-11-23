@@ -9,8 +9,14 @@
     <script type="">
       $(document).ready(function($) {
         $("body").vegas({
+          delay: 10000,
+          transition: slideRight2,
+          autoplay: false,
           slides: [
-            { src: '/img/mens-black.png' }
+            { src: '/img/mens-black.png',
+              src: '/img/mens-gold.png',
+              src: '/img/mens-navy.png',
+              src: '/img/mens-white.png' }
           ]
         });
       });
