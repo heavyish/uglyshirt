@@ -8,20 +8,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.js"></script>
     <script type="">
       $(document).ready(function($) {
+        var slides = [
+          { src: '/img/mens-black.png'},
+          { src: '/img/mens-gold.png'},
+          { src: '/img/mens-navy.png'},
+          { src: '/img/mens-white.png'}
+        ],
+        rando = Math.round((slides.length-1)*Math.random()),
+        slide = (typeof slides[rando] == "object") ? slides[rando] : slides[0];
+
         $("body").vegas({
           delay: 10000,
           autoplay: false,
-          slides: [
-            { src: '/img/mens-black.png',
-              src: '/img/mens-gold.png',
-              src: '/img/mens-navy.png',
-              src: '/img/mens-white.png' }
-          ]
+          slides: [slide]
         });
       });
     </script>
   </head>
-  <body>
+  <body data-section="0">
     <script src="https://gumroad.com/js/gumroad.js"></script>
     <div class="wrapper">
       <a class="gumroad-button" href="https://gum.co/ftEYr">I hate this button</a>
