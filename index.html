@@ -7,22 +7,41 @@
     <link rel="stylesheet" href="/css/button.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.js"></script>
     <script type="">
-      $(document).ready(function($) {
-        var slides = [
-          { src: '/img/mens-black.png'},
-          { src: '/img/mens-gold.png'},
-          { src: '/img/mens-navy.png'},
-          { src: '/img/mens-white.png'}
-        ],
-        rando = Math.round((slides.length-1)*Math.random()),
-        slide = (typeof slides[rando] == "object") ? slides[rando] : slides[0];
+      var opts = {
+        delay: 2000,
+        autoplay: false,
+        slides: []
+      }
+      loadSection = function (section) {
+        //  get section data
+        $.getJSON('/data/'+section+'.json', function(sectionSlides){
+          //  random key from slides
+          var rando = Math.round((sectionSlides.length-1)*Math.random());
+          //  set slides
+          opts.slides = sectionSlides;
+          //  put rando in first to be bg
+          if (typeof opts.slides[rando] == "object" && rando > 0) {
+            var slide = opts.slides[rando];
+            opts.slides.splice(rando,1);
+            opts.slides.shift(slide);
+          }
+          //  attach vegas to body
+          $("body").vegas(opts);
+        });
+      }
 
-        $("body").vegas({
-          delay: 10000,
-          autoplay: false,
-          slides: [slide]
+      $(document).ready(function($) {
+        var section = 0;
+        //  init with first section
+        loadSection(0);
+        //  mouseover events
+        $("a.gumroad-button").on("mouseover", function (e) {
+          $("body").vegas("play");
+        }).on("mouseout", function (e) {
+          $("body").vegas("pause");
         });
       });
+      //  advance section on arrow click/swipe
     </script>
   </head>
   <body data-section="0">
