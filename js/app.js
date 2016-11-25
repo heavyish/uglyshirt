@@ -79,6 +79,8 @@ $(document).ready(function($) {
     $("body").on("swipeLeft", function (e) {
       changeSection("up");
     });
+    //  mobile styles
+    $("body").addClass("phone");
   //  browser events
   } else {
     //  mouseover events
@@ -87,6 +89,8 @@ $(document).ready(function($) {
     }).on("mouseout", function (e) {
       $("body").vegas("pause");
     });
+    //  browser styles
+    $("body").addClass("not-phone");
   }
 });
 //  advance section on arrow click/swipe
