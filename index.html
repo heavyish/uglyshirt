@@ -2,47 +2,11 @@
 
   <head>
   <title>UUUUUUUUUUUUUUUUUUGGGGGGGGLY</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="/js/zepto.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.css">
     <link rel="stylesheet" href="/css/button.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.3.1/vegas.min.js"></script>
-    <script type="">
-      var opts = {
-        delay: 2000,
-        autoplay: false,
-        slides: []
-      }
-      loadSection = function (section) {
-        //  get section data
-        $.getJSON('/data/'+section+'.json', function(sectionSlides){
-          //  random key from slides
-          var rando = Math.round((sectionSlides.length-1)*Math.random());
-          //  set slides
-          opts.slides = sectionSlides;
-          //  put rando in first to be bg
-          if (typeof opts.slides[rando] == "object" && rando > 0) {
-            var slide = opts.slides[rando];
-            opts.slides.splice(rando,1);
-            opts.slides.shift(slide);
-          }
-          //  attach vegas to body
-          $("body").vegas(opts);
-        });
-      }
-
-      $(document).ready(function($) {
-        var section = 0;
-        //  init with first section
-        loadSection(0);
-        //  mouseover events
-        $("a.gumroad-button").on("mouseover", function (e) {
-          $("body").vegas("play");
-        }).on("mouseout", function (e) {
-          $("body").vegas("pause");
-        });
-      });
-      //  advance section on arrow click/swipe
-    </script>
+    <script src="/js/app.js"></script>
   </head>
   <body data-section="0">
     <script src="https://gumroad.com/js/gumroad.js"></script>
