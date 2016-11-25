@@ -36,7 +36,7 @@ loadSection = function (section) {
           //  update options with new slide set
           $("body").vegas("options", opts);
           //  remove old slide
-          $(".vegas-slide").first().remove();
+          $(".vegas-slide").remove();
           //  advance to first new one
           $("body").vegas("next");
         } else {
