@@ -1,5 +1,8 @@
-[
-  { "src": "/img/womens-black.png"},
-  { "src": "/img/womens-lemon.png"},
-  { "src": "/img/womens-oatmeal.png"}
-]
+{
+  "slides" : [
+    { "src": "/img/womens-black.png"},
+    { "src": "/img/womens-lemon.png"},
+    { "src": "/img/womens-oatmeal.png"}
+  ],
+  "href" : "https://gum.co/LQYJL"
+}

@@ -20,11 +20,11 @@ loadSection = function (section) {
   .done(function(data, status,xhr) {
     if (xhr.status >= 200 && xhr.status < 400) {
       //  get section data
-      $.getJSON('/data/'+section+'.json', function(sectionSlides){
+      $.getJSON('/data/'+section+'.json', function(sectionData){
       //  random key from slides
-        var rando = Math.round((sectionSlides.length-1)*Math.random());
+        var rando = Math.round((sectionData.slides.length-1)*Math.random());
         //  set slides
-        opts.slides = sectionSlides;
+        opts.slides = sectionData.slides;  console.log(sectionData);
         //  put rando in first to be bg
         if (typeof opts.slides[rando] == "object" && rando > 0) {
           var slide = opts.slides[rando];
@@ -42,6 +42,8 @@ loadSection = function (section) {
         } else {
           $("body").vegas(opts);
         }
+
+        $("a.gumroad-button").attr("href", sectionData.href);
         //  store section
         $("body").attr("data-section", section);
       });

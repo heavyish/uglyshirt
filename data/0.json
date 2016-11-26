@@ -1,6 +1,9 @@
-[
-  { "src": "/img/mens-black.png"},
-  { "src": "/img/mens-gold.png"},
-  { "src": "/img/mens-navy.png"},
-  { "src": "/img/mens-white.png"}
-]
+  {
+  "slides" : [
+    { "src" : "/img/mens-black.png"},
+    { "src" : "/img/mens-gold.png"},
+    { "src" : "/img/mens-navy.png"},
+    { "src" : "/img/mens-white.png"}
+  ],
+  "href" : "https://gum.co/ftEYr"
+}
