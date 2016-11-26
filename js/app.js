@@ -73,6 +73,7 @@ $(document).ready(function($) {
     $("body").on("doubleTap", function (e) {
       $("a.gumroad-button").trigger("click");
     });
+    //  advance section on swipe
     $("body").on("swipeRight", function (e) {
       changeSection("down");
     });
@@ -89,8 +90,14 @@ $(document).ready(function($) {
     }).on("mouseout", function (e) {
       $("body").vegas("pause");
     });
+    //  advance section on arrow click
+    $("div.leftArrow").on("click", function (e) {
+      changeSection("down");
+    });
+    $("div.rightArrow").on("click", function (e) {
+      changeSection("up");
+    });
     //  browser styles
     $("body").addClass("not-phone");
   }
 });
-//  advance section on arrow click/swipe

@@ -1,0 +1,19 @@
+div.leftArrow,
+div.rightArrow {
+  height: 25%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+}
+div.leftArrow {
+  left: 0px;
+}
+div.rightArrow {
+  right: 0px;
+}
+
+body.phone div.leftArrow,
+body.phone div.rightArrow {
+  display: none;
+}
