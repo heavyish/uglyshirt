@@ -1,17 +1,11 @@
 var opts = {
   delay: 1500,
+  transitionDuration: 400,
+  cover: false,
   autoplay: false,
   slides: []
 },
-getSection = function () {
-  return parseInt($("body").attr("data-section"));
-},
-setSection = function (section) {
-  if (testSection(section)) {
-    $("body").attr("data-section", section);
-  }
-},
-loadSection = function (section) {
+loadSection = function (section, transition) {
   //  check data exists
   $.ajax({
     url: '/data/' + section + '.json',
@@ -24,7 +18,7 @@ loadSection = function (section) {
       //  random key from slides
         var rando = Math.round((sectionData.slides.length-1)*Math.random());
         //  set slides
-        opts.slides = sectionData.slides;  console.log(sectionData);
+        opts.slides = sectionData.slides;
         //  put rando in first to be bg
         if (typeof opts.slides[rando] == "object" && rando > 0) {
           var slide = opts.slides[rando];
@@ -38,7 +32,12 @@ loadSection = function (section) {
           //  remove old slide
           $(".vegas-slide").remove();
           //  advance to first new one
+          $("body").vegas("options", "transition", transition);
           $("body").vegas("next");
+          //  for browser - find a better way to do this...
+          if ($("body").hasClass("not-phone")) {
+            $("body").vegas("options", "transition", "fade");
+          }
         } else {
           $("body").vegas(opts);
         }
@@ -55,24 +54,21 @@ changeSection = function(direction) {
   switch(direction) {
     case "up":
       section++;
+      transition = "slideLeft";
       break;
     case "down":
       section--;
+      transition = "slideRight";
       break;
   }
-  loadSection(section);
+  loadSection(section, transition);
 };
 
 $(document).ready(function($) {
-  //  init with first section
-  loadSection(0);
   //  mobile
   if ($.os.phone) {
-      //  mobile events
-    $("body").on("singleTap", function (e) {
-      $("body").vegas("next");
-    });
-    $("body").on("doubleTap", function (e) {
+      //  tap to buy
+    $("body").on("tap", function (e) {
       $("a.gumroad-button").trigger("click");
     });
     //  advance section on swipe
@@ -82,15 +78,28 @@ $(document).ready(function($) {
     $("body").on("swipeLeft", function (e) {
       changeSection("up");
     });
+    //  change slides on up/down swipe
+    $("body").on("swipeUp", function (e) {
+      if (opts.slides.length>1) {
+        $("body").vegas("options", 'transition', 'slideUp');
+        $("body").vegas("next");
+      }
+    });
+    $("body").on("swipeDown", function (e) {
+      if (opts.slides.length>1) {
+        $("body").vegas("options", 'transition', 'slideDown');
+        $("body").vegas("previous");
+      }
+    });
     //  mobile styles
     $("body").addClass("phone");
   //  browser events
   } else {
     //  mouseover events
     $("a.gumroad-button").on("mouseover", function (e) {
-      $("body").vegas("play");
-    }).on("mouseout", function (e) {
       $("body").vegas("pause");
+    }).on("mouseout", function (e) {
+      $("body").vegas("play");
     });
     //  advance section on arrow click
     $("div.leftArrow").on("click", function (e) {
@@ -101,5 +110,20 @@ $(document).ready(function($) {
     });
     //  browser styles
     $("body").addClass("not-phone");
+
+    //  change some options
+    opts.autoplay = true;
+    opts.delay = 2300;
+    opts.init = function (globalSettings) {
+        console.log("Init");
+    };
+    opts.play = function (index, slideSettings) {
+        console.log("Play");
+    };
+    opts.walk = function (index, slideSettings) {
+        console.log("Slide index " + index + " image " + slideSettings.src);
+    };
   }
+
+  loadSection(0);
 });
