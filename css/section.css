@@ -18,3 +18,8 @@ body.phone div.leftArrow,
 body.phone div.rightArrow {
   display: none;
 }
+
+.vegas-slide, .vegas-slide-inner {
+  width: 120% !important;
+  margin-left: -10%;
+}
