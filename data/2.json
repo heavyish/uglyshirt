@@ -2,5 +2,6 @@
   "slides" : [
     { "src": "/img/sad-face.png"}
   ],
-  "href" : "https://gum.co/OqKS"
+  "href" : "https://gum.co/OqKS",
+  "buttonText" : ":)"
 }

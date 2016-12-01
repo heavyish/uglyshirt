@@ -42,8 +42,10 @@ loadSection = function (section, transition) {
         } else {
           $("body").vegas(opts);
         }
-
+        //  update link
         $("a.gumroad-button").attr("href", sectionData.href);
+        //  update button text
+        $("a.gumroad-button").html(sectionData.buttonText);
         //  store section
         $("body").attr("data-section", section);
       });
