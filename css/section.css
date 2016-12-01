@@ -1,25 +1,95 @@
+div.arrow {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+}
+div.arrow.hidden {
+  cursor: default;
+}
+div.arrow img {
+  opacity: 1;
+  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+}
+div.arrow.leftArrow img {
+  left: 0%;
+}
+div.arrow.leftArrow.hidden img {
+  left: -100%;
+}
+div.arrow.rightArrow img {
+  right: 0%;
+}
+div.arrow.rightArrow.hidden img {
+  right: -100%;
+}
+div.arrow.upArrow img {
+  top: 0%;
+}
+div.arrow.upArrow.hidden img {
+  top: -100%;
+}
+div.arrow.downArrow img {
+  bottom: 0%;
+}
+div.arrow.downArrow.hidden img {
+  bottom: -100%;
+}
+
+div.leftArrow img,
+div.rightArrow img {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+div.upArrow img,
+div.downArrow img {
+  position: relative;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 div.leftArrow,
 div.rightArrow {
-  height: 25%;
-  position: absolute;
+  height: 20%;
+  width: 6%;
+  max-width: 50px;
   top: 50%;
   -webkit-transform: translate(0%, -50%);
           transform: translate(0%, -50%);
-  cursor: pointer;
 }
 div.leftArrow {
-  left: 0px;
+  left: 0%;
 }
 div.rightArrow {
-  right: 0px;
+  right: 0%;
 }
 
-body.phone div.leftArrow,
-body.phone div.rightArrow {
-  display: none;
+div.upArrow,
+div.downArrow {
+  width: 25%;
+  height: 6%;
+  max-height: 50px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+div.upArrow {
+  top: 0%;
+}
+div.downArrow {
+  bottom: 0%;
 }
 
-.vegas-slide, .vegas-slide-inner {
+body.phone .vegas-slide .vegas-slide-inner {
   width: 120% !important;
   margin-left: -10%;
+}
+body.not-phone .vegas-slide .vegas-slide-inner {
+  width: 80% !important;
+  margin-left: 10%;
 }

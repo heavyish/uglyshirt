@@ -3,6 +3,7 @@ var opts = {
   transitionDuration: 400,
   cover: false,
   autoplay: false,
+  preload: true,
   slides: []
 },
 loadSection = function (section, transition) {
@@ -62,13 +63,36 @@ changeSection = function(direction) {
       break;
   }
   loadSection(section, transition);
+},
+changeSlide = function (direction) {
+  if (opts.slides.length>1) {
+    var slide = $("body").attr('data-slide');
+    switch(direction) {
+      case "up":
+        slide = (slide === opts.slides.length) ? 0 : slide++;
+        transition = "slideUp";
+        break;
+      case "down":
+        slide = (slide === 0) ? opts.slides.length - 1 : slide--;
+        transition = "slideDown";
+        break;
+    }
+    $("body").vegas("options", "transition", transition);
+    $("body").vegas("jump", slide);
+    $("body").attr('data-slide', slide);
+  }
 };
 
 $(document).ready(function($) {
   //  mobile
   if ($.os.phone) {
-      //  tap to buy
-    $("body").on("tap", function (e) {
+    //  tap to advance
+    $("body").on("singleTap", function (e) {
+      $("body").vegas("options", "transition", "slideLeft");
+      $("body").vegas("next");
+    });
+    //  double tap to buy
+    $("body").on("doubleTap", function (e) {
       $("a.gumroad-button").trigger("click");
     });
     //  advance section on swipe
@@ -80,40 +104,40 @@ $(document).ready(function($) {
     });
     //  change slides on up/down swipe
     $("body").on("swipeUp", function (e) {
-      if (opts.slides.length>1) {
-        $("body").vegas("options", 'transition', 'slideUp');
-        $("body").vegas("next");
-      }
+      changeSlide('up');
     });
     $("body").on("swipeDown", function (e) {
-      if (opts.slides.length>1) {
-        $("body").vegas("options", 'transition', 'slideDown');
-        $("body").vegas("previous");
-      }
+      changeSlide('down');
     });
     //  mobile styles
     $("body").addClass("phone");
+
+    //  tease us with the arrows so we get the idea
+    window.setTimeout(function () {
+      $("div.arrow").addClass('hidden');
+    }, 6000);
+
   //  browser events
   } else {
-    //  mouseover events
-    $("a.gumroad-button").on("mouseover", function (e) {
-      $("body").vegas("pause");
-    }).on("mouseout", function (e) {
-      $("body").vegas("play");
-    });
-    //  advance section on arrow click
+    //  navigate on arrow click
     $("div.leftArrow").on("click", function (e) {
       changeSection("down");
     });
     $("div.rightArrow").on("click", function (e) {
       changeSection("up");
     });
+    $("div.upArrow").on("click", function (e) {
+      changeSlide('up');
+    });
+    $("div.downArrow").on("click", function (e) {
+      changeSlide('down');
+    });
     //  browser styles
     $("body").addClass("not-phone");
 
     //  change some options
-    opts.autoplay = true;
     opts.delay = 2300;
+    /*
     opts.init = function (globalSettings) {
         console.log("Init");
     };
@@ -123,7 +147,12 @@ $(document).ready(function($) {
     opts.walk = function (index, slideSettings) {
         console.log("Slide index " + index + " image " + slideSettings.src);
     };
+    */
   }
 
   loadSection(0);
+  //  transition in the arrows so we get the idea
+  window.setTimeout(function () {
+    $("div.arrow").removeClass('hidden');
+  }, 2000);
 });
