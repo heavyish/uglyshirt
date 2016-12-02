@@ -48,12 +48,14 @@ loadSection = function (section, transition) {
         $("a.gumroad-button").html(sectionData.buttonText);
         //  store section
         $("body").attr("data-section", section);
+        //  reset slide
+        $("body").attr("data-slide", 0);
       });
     }
   });
 },
 changeSection = function(direction) {
-  var section = $("body").attr('data-section');
+  var section = parseInt($("body").attr('data-section'));
   switch(direction) {
     case "up":
       section++;
@@ -68,14 +70,14 @@ changeSection = function(direction) {
 },
 changeSlide = function (direction) {
   if (opts.slides.length>1) {
-    var slide = $("body").attr('data-slide');
+    var slide = parseInt($("body").attr('data-slide'));
     switch(direction) {
       case "up":
-        slide = (slide === opts.slides.length) ? 0 : slide++;
+        slide = (slide === opts.slides.length - 1) ? 0 : slide+1;
         transition = "slideUp";
         break;
       case "down":
-        slide = (slide === 0) ? opts.slides.length - 1 : slide--;
+        slide = (slide === 0) ? opts.slides.length - 1 : slide-1;
         transition = "slideDown";
         break;
     }
