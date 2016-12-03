@@ -5,6 +5,12 @@
     { "src" : "/img/mens-navy.png"},
     { "src" : "/img/mens-white.png"}
   ],
+  "slidesPhone" : [
+    { "src" : "/img/phone/mens-black.png"},
+    { "src" : "/img/phone/mens-gold.png"},
+    { "src" : "/img/phone/mens-navy.png"},
+    { "src" : "/img/phone/mens-white.png"}
+  ],
   "href" : "https://gum.co/ftEYr",
   "buttonText" : "I hate this button"
 }

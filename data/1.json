@@ -4,6 +4,11 @@
     { "src": "/img/womens-lemon.png"},
     { "src": "/img/womens-oatmeal.png"}
   ],
+  "slidesPhone" : [
+    { "src": "/img/phone/womens-black.png"},
+    { "src": "/img/phone/womens-lemon.png"},
+    { "src": "/img/phone/womens-oatmeal.png"}
+  ],
   "href" : "https://gum.co/LQYJL",
   "buttonText" : "love the hate"
 }

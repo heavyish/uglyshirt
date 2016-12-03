@@ -19,7 +19,7 @@ loadSection = function (section, transition) {
       //  random key from slides
         var rando = Math.round((sectionData.slides.length-1)*Math.random());
         //  set slides
-        opts.slides = sectionData.slides;
+        opts.slides = ($.os.phone) ? sectionData.slidesPhone : sectionData.slides;
         //  put rando in first to be bg
         if (typeof opts.slides[rando] == "object" && rando > 0) {
           var slide = opts.slides[rando];

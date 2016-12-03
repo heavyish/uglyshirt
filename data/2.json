@@ -2,6 +2,9 @@
   "slides" : [
     { "src": "/img/sad-face.png"}
   ],
+  "slidesPhone" : [
+    { "src": "/img/phone/sad-face.png"}
+  ],
   "href" : "https://gum.co/OqKS",
   "buttonText" : ":)"
 }
